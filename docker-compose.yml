@@ -1,0 +1,76 @@
+services:
+  dashboard:
+    build:
+      context: .
+      dockerfile: ./config/dashboard/DockerFile
+    container_name: DAMPP_dashboard
+    ports:
+      - "${DASHBOARD_PORT}:80"
+    volumes:
+      - ./config/dashboard/dashboard.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./dashboard:/var/www/html
+    deploy:
+      resources:
+        limits:
+          memory: ${DASHBOARD_MAX_MEMORY}
+    networks:
+      - DAMPP_network
+
+  web:
+    build:
+      context: .
+      dockerfile: ./config/web/DockerFile
+    container_name: DAMPP_web
+    ports:
+      - "${WEB_PORT}:80"
+    volumes:
+      - ./config/web/web.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./www:/var/www/html
+    deploy:
+      resources:
+        limits:
+          memory: ${WEB_MAX_MEMORY}
+    networks:
+      - DAMPP_network
+
+  db:
+    image: mariadb:10.4.32
+    container_name: DAMPP_db
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - ./database:/var/lib/mysql
+    deploy:
+      resources:
+        limits:
+          memory: ${DB_MAX_MEMORY}
+    networks:
+      - DAMPP_network
+
+  db_panel:
+    image: phpmyadmin:5.2.1
+    container_name: DAMPP_db_panel
+    environment:
+      PMA_HOST: DAMPP_db
+      PMA_USER: ${DB_ROOT_USER}
+      PMA_PASSWORD: ${DB_ROOT_PASSWORD}
+      PMA_ARBITRARY: 1
+    ports:
+      - "${DB_PANEL_PORT}:80"
+    deploy:
+      resources:
+        limits:
+          memory: ${DB_PANEL_MAX_MEMORY}
+    networks:
+      - DAMPP_network
+    depends_on:
+      - db
+
+networks:
+  DAMPP_network:
+    driver: bridge

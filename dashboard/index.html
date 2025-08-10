@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAMPP - Dashboard</title>
+    <link rel="icon" href="assets/dampp.png" type="image/x-icon" />
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background-color: #23272e;
+        color: #e0e6ed;
+      }
+      header {
+        background: linear-gradient(135deg, #23272e, #2d3542);
+        color: #f8fafc;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        color: #7ecfff;
+        letter-spacing: 1px;
+      }
+      main {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #2d3542;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.13);
+      }
+      h2 {
+        color: #7ecfff;
+        border-left: 5px solid #7ecfff;
+        padding-left: 10px;
+      }
+      code {
+        background: #1a1d22;
+        color: #7ecfff;
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      a {
+        color: #7ecfff;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      a:hover {
+        color: #b8e1ff;
+        text-decoration: underline;
+      }
+      ul {
+        line-height: 1.7;
+      }
+      footer {
+        text-align: center;
+        padding: 15px;
+        background: #23272e;
+        color: #7ecfff;
+        margin-top: 30px;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.18);
+      }
+      .logo {
+        width: 180px;
+        margin-bottom: 15px;
+        filter: drop-shadow(0 0 8px #7ecfff55);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="assets/docker.svg" alt="Docker Logo" class="logo" />
+      <h1>Welcome to DAMPP</h1>
+      <p>Dockerized Apache, MariaDB, PHP & PHPMyAdmin</p>
+    </header>
+    <main>
+      <section>
+        <h2>What is DAMPP?</h2>
+        <p>
+          DAMPP is a solution using Docker to host a complete local development
+          environment including:
+        </p>
+        <ul>
+          <li>Apache (web server)</li>
+          <li>MariaDB (MySQL database)</li>
+          <li>PHP</li>
+          <li>PHPMyAdmin (database management interface)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Access the services</h2>
+        <ul>
+          <li>
+            <a href="http://localhost" target="_blank">Local website</a>
+          </li>
+          <li>
+            <a href="http://localhost:8080" target="_blank">PHPMyAdmin</a>
+          </li>
+          <li>
+            <a href="http://localhost:8081" target="_blank">Dashboard</a>
+          </li>
+          <li>
+            <strong>MariaDB:</strong> port <code>3306</code> (host
+            <code>DAMPP_db</code>)
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Where to put your web files?</h2>
+        <p>
+          Place your files in the <code>www</code> folder of your DAMPP project.
+          They will automatically be accessible from
+          <a href="http://localhost">http://localhost</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Default credentials</h2>
+        <ul>
+          <li>
+            <strong>MariaDB:</strong> user <code>root</code>, password <code>root</code>
+          </li>
+          <li>
+            <strong>PHPMyAdmin:</strong> connects automatically using the MariaDB
+            credentials.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Documentation</h2>
+        <p>Used versions:</p>
+        <ul>
+          <li>Apache: 2.4.62</li>
+          <li>MariaDB: 10.4.32</li>
+          <li>PHP: 8.2.12</li>
+          <li>PHPMyAdmin: 5.2.1</li>
+        </ul>
+        <p>
+          For more details about PHP configuration:
+          <a href="/php">Configuration details</a>
+        </p>
+        <p>
+          See the <code>README.md</code> file for more information about configuring
+          and using DAMPP.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>
+        <a href="https://github.com/benjamin-bonneton/DAMPP" target="_blank"
+          >DAMPP</a
+        >
+        -
+        <a href="https://benjamin-bonneton.com" target="_blank"
+          >Benjamin Bonneton</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
+</html>
